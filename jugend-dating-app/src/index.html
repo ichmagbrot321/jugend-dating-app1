@@ -1,1 +1,279 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="description" content="Sichere Dating-App für Jugendliche ab 14 Jahren">
+    
+    <title>YouthConnect - Sicher Vernetzen</title>
+    
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/icons/icon-192.png">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/styles.css">
+    
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    
+    <!-- ============================================ -->
+    <!-- LOADING SCREEN -->
+    <!-- ============================================ -->
+    <div id="loading-screen" class="screen active">
+        <div class="loading-spinner"></div>
+        <p>Lädt...</p>
+    </div>
 
+    <!-- ============================================ -->
+    <!-- SICHERHEITSHINWEISE SCREEN -->
+    <!-- ============================================ -->
+    <div id="safety-screen" class="screen">
+        <div class="safety-container">
+            <div class="safety-header">
+                <h1>⚠️ WICHTIGE SICHERHEITSHINWEISE</h1>
+            </div>
+
+            <div class="safety-content">
+                
+                <!-- Keine Verantwortung -->
+                <div class="safety-section danger">
+                    <h2>🚨 KEINE VERANTWORTUNG DER PLATTFORM</h2>
+                    <p><strong>Wir übernehmen KEINE Haftung für:</strong></p>
+                    <ul>
+                        <li>Inhalte von anderen Nutzern</li>
+                        <li>Treffen im echten Leben</li>
+                        <li>Weitergabe persönlicher Daten</li>
+                        <li>Beziehungen oder Kontakte</li>
+                    </ul>
+                    <p class="highlight">Du bist selbst verantwortlich für dein Verhalten!</p>
+                </div>
+
+                <!-- Eltern verantwortlich -->
+                <div class="safety-section warning">
+                    <h2>👨‍👩‍👧 ELTERN SIND VERANTWORTLICH</h2>
+                    <p>Wenn du unter 16 bist, müssen deine Eltern:</p>
+                    <ul>
+                        <li>Deiner Nutzung zustimmen</li>
+                        <li>Deine Aktivitäten überwachen</li>
+                        <li>Für dein Verhalten haften</li>
+                    </ul>
+                </div>
+
+                <!-- Notfallnummern -->
+                <div class="safety-section info">
+                    <h2>📞 WICHTIGE NOTFALLNUMMERN</h2>
+                    <ul class="emergency-numbers">
+                        <li><strong>110</strong> - Polizei Notruf</li>
+                        <li><strong>116 111</strong> - Nummer gegen Kummer (Kinder & Jugendliche)</li>
+                        <li><strong>0800 22 55 530</strong> - Hilfetelefon sexueller Missbrauch</li>
+                        <li><strong>jugend.support</strong> - Online-Beratung</li>
+                    </ul>
+                </div>
+
+                <!-- Goldene Regeln -->
+                <div class="safety-section rules">
+                    <h2>📜 GOLDENE REGELN</h2>
+                    <ul>
+                        <li>❌ <strong>NIEMALS</strong> persönliche Daten teilen (Adresse, Schule, Telefon)</li>
+                        <li>❌ <strong>NIEMALS</strong> alleine mit Fremden treffen</li>
+                        <li>✅ Rede mit deinen Eltern über deine Kontakte</li>
+                        <li>✅ Melde <strong>SOFORT</strong> verdächtiges Verhalten</li>
+                        <li>❌ <strong>Keine Nacktbilder</strong> - Das ist strafbar!</li>
+                        <li>⚠️ Screenshots können geteilt werden - Sei vorsichtig!</li>
+                        <li>✅ Blockiere bei Unbehagen - Lieber einmal zu viel!</li>
+                    </ul>
+                </div>
+
+                <!-- Moderation Info -->
+                <div class="safety-section info">
+                    <h2>🔍 WIR MODERIEREN, ABER NICHT LIVE</h2>
+                    <p>Unsere Moderation arbeitet mit:</p>
+                    <ul>
+                        <li>Automatischen Wortfiltern</li>
+                        <li>Meldungen durch Nutzer</li>
+                        <li>Manueller Überprüfung durch Moderatoren</li>
+                    </ul>
+                    <p class="highlight">⚠️ Es gibt KEINE Live-Überwachung 24/7!</p>
+                    <p class="highlight-strong">DU bist die erste Verteidigungslinie! Melde alles Verdächtige!</p>
+                </div>
+
+                <!-- Warnsignale -->
+                <div class="safety-section danger">
+                    <h2>🚩 WARNSIGNALE - MELDE SOFORT:</h2>
+                    <ul>
+                        <li>🚩 Jemand will deine Adresse oder Schule wissen</li>
+                        <li>🚩 Jemand drängt dich zu Treffen</li>
+                        <li>🚩 Jemand bittet um Nacktbilder oder intime Fotos</li>
+                        <li>🚩 Jemand will auf andere Plattformen wechseln</li>
+                        <li>🚩 Jemand gibt sich als jemand anderes aus</li>
+                        <li>🚩 Jemand redet über Geheimnisse vor Eltern</li>
+                        <li>🚩 Jemand bietet Geld oder Geschenke an</li>
+                        <li>🚩 Erwachsene kontaktieren dich</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Bestätigungs-Checkboxen -->
+            <div class="safety-checkboxes">
+                <label class="checkbox-container">
+                    <input type="checkbox" id="check1" required>
+                    <span>Ich habe die Sicherheitshinweise gelesen und verstanden</span>
+                </label>
+                
+                <label class="checkbox-container">
+                    <input type="checkbox" id="check2" required>
+                    <span>Ich weiß, dass die Plattform keine Haftung übernimmt</span>
+                </label>
+                
+                <label class="checkbox-container">
+                    <input type="checkbox" id="check3" required>
+                    <span>Ich werde verdächtiges Verhalten sofort melden</span>
+                </label>
+                
+                <label class="checkbox-container">
+                    <input type="checkbox" id="check4" required>
+                    <span>Ich habe mit meinen Eltern über diese App gesprochen</span>
+                </label>
+            </div>
+
+            <!-- Bestätigen Button -->
+            <button id="safety-accept-btn" class="btn btn-primary btn-large" disabled>
+                Ich akzeptiere und verstehe die Hinweise
+            </button>
+
+            <p class="safety-footer">
+                Durch Fortfahren akzeptierst du unsere 
+                <a href="#" id="show-agb">AGB</a> und 
+                <a href="#" id="show-datenschutz">Datenschutzerklärung</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- LOGIN/REGISTER SCREEN -->
+    <!-- ============================================ -->
+    <div id="auth-screen" class="screen">
+        <div class="auth-container">
+            <div class="app-logo">
+                <h1>💬 YouthConnect</h1>
+                <p>Sicher vernetzen ab 14</p>
+            </div>
+
+            <!-- Login Form -->
+            <div id="login-form" class="auth-form active">
+                <h2>Willkommen zurück!</h2>
+                
+                <div class="form-group">
+                    <label for="login-email">E-Mail</label>
+                    <input type="email" id="login-email" placeholder="deine@email.de" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="login-password">Passwort</label>
+                    <input type="password" id="login-password" placeholder="••••••••" required>
+                </div>
+
+                <button id="login-btn" class="btn btn-primary btn-large">
+                    Anmelden
+                </button>
+
+                <p class="form-switch">
+                    Noch kein Account? 
+                    <a href="#" id="switch-to-register">Jetzt registrieren</a>
+                </p>
+            </div>
+
+            <!-- Register Form -->
+            <div id="register-form" class="auth-form">
+                <h2>Account erstellen</h2>
+                
+                <div class="form-group">
+                    <label for="register-username">Benutzername</label>
+                    <input type="text" id="register-username" placeholder="max_mustermann" minlength="3" maxlength="20" required>
+                    <small>3-20 Zeichen</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="register-email">E-Mail</label>
+                    <input type="email" id="register-email" placeholder="deine@email.de" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="register-password">Passwort</label>
+                    <input type="password" id="register-password" placeholder="Mindestens 8 Zeichen" minlength="8" required>
+                </div>
+
+                <!-- Geburtsdatum - EINFACH -->
+                <div class="form-group">
+                    <label>Geburtsdatum</label>
+                    <div class="birthdate-selector">
+                        <select id="birth-day" required>
+                            <option value="">Tag</option>
+                            <!-- Wird per JavaScript gefüllt -->
+                        </select>
+                        <select id="birth-month" required>
+                            <option value="">Monat</option>
+                            <option value="1">Januar</option>
+                            <option value="2">Februar</option>
+                            <option value="3">März</option>
+                            <option value="4">April</option>
+                            <option value="5">Mai</option>
+                            <option value="6">Juni</option>
+                            <option value="7">Juli</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">Oktober</option>
+                            <option value="11">November</option>
+                            <option value="12">Dezember</option>
+                        </select>
+                        <select id="birth-year" required>
+                            <option value="">Jahr</option>
+                            <!-- Wird per JavaScript gefüllt -->
+                        </select>
+                    </div>
+                    <small>Du musst mindestens 14 Jahre alt sein</small>
+                </div>
+
+                <!-- Eltern-Email (wird angezeigt wenn unter 16) -->
+                <div class="form-group" id="parent-email-group" style="display: none;">
+                    <label for="parent-email">E-Mail deiner Eltern</label>
+                    <input type="email" id="parent-email" placeholder="eltern@email.de">
+                    <small class="warning-text">⚠️ Unter 16: Eltern müssen zustimmen!</small>
+                </div>
+
+                <button id="register-btn" class="btn btn-primary btn-large">
+                    Registrieren
+                </button>
+
+                <p class="form-switch">
+                    Schon ein Account? 
+                    <a href="#" id="switch-to-login">Zum Login</a>
+                </p>
+            </div>
+
+            <div id="auth-error" class="error-message" style="display: none;"></div>
+            <div id="auth-success" class="success-message" style="display: none;"></div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- HAUPTAPP (wird später hinzugefügt) -->
+    <!-- ============================================ -->
+    <div id="app-screen" class="screen">
+        <div class="app-container">
+            <h1>🎉 Willkommen!</h1>
+            <p>Phase 1 erfolgreich! Hier kommt später die App hin.</p>
+            <button id="logout-btn" class="btn btn-secondary">Ausloggen</button>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="/app.js"></script>
+
+</body>
+</html>
