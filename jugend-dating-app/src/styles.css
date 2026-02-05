@@ -1,1 +1,593 @@
+/* ============================================
+   JUGEND DATING APP - STYLES
+   Mobile First | Dark Mode | Modern
+   ============================================ */
 
+/* ============================================
+   CSS RESET & BASE
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Farben - Dark Mode */
+    --bg-primary: #0f0f1e;
+    --bg-secondary: #1a1a2e;
+    --bg-tertiary: #252541;
+    
+    --text-primary: #ffffff;
+    --text-secondary: #b8b8d1;
+    --text-muted: #6e6e8f;
+    
+    --accent-primary: #6c5ce7;
+    --accent-secondary: #a29bfe;
+    --accent-hover: #5848c7;
+    
+    --success: #00b894;
+    --warning: #fdcb6e;
+    --danger: #d63031;
+    --info: #74b9ff;
+    
+    /* Spacing */
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2rem;
+    --space-xl: 3rem;
+    
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+    
+    /* Transitions */
+    --transition: all 0.3s ease;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   SCREEN MANAGEMENT
+   ============================================ */
+
+.screen {
+    display: none;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.screen.active {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ============================================
+   LOADING SCREEN
+   ============================================ */
+
+#loading-screen {
+    justify-content: center;
+    align-items: center;
+    background: var(--bg-primary);
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--bg-tertiary);
+    border-top-color: var(--accent-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+#loading-screen p {
+    margin-top: var(--space-md);
+    color: var(--text-secondary);
+}
+
+/* ============================================
+   SICHERHEITSHINWEISE SCREEN
+   ============================================ */
+
+#safety-screen {
+    overflow-y: auto;
+    padding: var(--space-md);
+}
+
+.safety-container {
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.safety-header {
+    text-align: center;
+    padding: var(--space-lg) 0;
+    background: linear-gradient(135deg, var(--danger), var(--warning));
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-lg);
+}
+
+.safety-header h1 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.safety-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+.safety-section {
+    background: var(--bg-secondary);
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--info);
+}
+
+.safety-section.danger {
+    border-left-color: var(--danger);
+    background: rgba(214, 48, 49, 0.1);
+}
+
+.safety-section.warning {
+    border-left-color: var(--warning);
+    background: rgba(253, 203, 110, 0.1);
+}
+
+.safety-section.info {
+    border-left-color: var(--info);
+}
+
+.safety-section.rules {
+    border-left-color: var(--success);
+    background: rgba(0, 184, 148, 0.1);
+}
+
+.safety-section h2 {
+    font-size: 1.2rem;
+    margin-bottom: var(--space-sm);
+    font-weight: 700;
+}
+
+.safety-section ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.safety-section ul li {
+    padding: var(--space-xs) 0;
+    padding-left: var(--space-md);
+    position: relative;
+}
+
+.safety-section ul li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--accent-primary);
+    font-weight: bold;
+}
+
+.safety-section.rules ul li::before {
+    content: "";
+}
+
+.emergency-numbers li {
+    background: var(--bg-tertiary);
+    padding: var(--space-sm);
+    margin: var(--space-xs) 0;
+    border-radius: var(--radius-sm);
+}
+
+.emergency-numbers li strong {
+    color: var(--accent-secondary);
+    font-size: 1.2rem;
+}
+
+.highlight {
+    background: var(--accent-primary);
+    padding: var(--space-sm);
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    margin-top: var(--space-sm);
+    display: block;
+}
+
+.highlight-strong {
+    background: var(--danger);
+    padding: var(--space-sm);
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    margin-top: var(--space-sm);
+    display: block;
+    font-size: 1.1rem;
+}
+
+/* Checkboxen */
+.safety-checkboxes {
+    background: var(--bg-secondary);
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-md);
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    padding: var(--space-sm) 0;
+    cursor: pointer;
+}
+
+.checkbox-container input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--accent-primary);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.checkbox-container span {
+    flex: 1;
+    font-size: 0.95rem;
+}
+
+.safety-footer {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: var(--space-md);
+}
+
+.safety-footer a {
+    color: var(--accent-secondary);
+    text-decoration: none;
+}
+
+/* ============================================
+   AUTH SCREEN
+   ============================================ */
+
+#auth-screen {
+    justify-content: center;
+    align-items: center;
+    padding: var(--space-md);
+}
+
+.auth-container {
+    max-width: 400px;
+    width: 100%;
+}
+
+.app-logo {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+}
+
+.app-logo h1 {
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: var(--space-xs);
+}
+
+.app-logo p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+.auth-form {
+    display: none;
+    background: var(--bg-secondary);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+}
+
+.auth-form.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.auth-form h2 {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+    font-size: 1.5rem;
+}
+
+/* Form Groups */
+.form-group {
+    margin-bottom: var(--space-md);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: var(--space-xs);
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: var(--space-sm);
+    background: var(--bg-tertiary);
+    border: 2px solid transparent;
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    background: var(--bg-primary);
+}
+
+.form-group small {
+    display: block;
+    margin-top: var(--space-xs);
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.form-group small.warning-text {
+    color: var(--warning);
+    font-weight: 600;
+}
+
+/* Geburtsdatum Selector */
+.birthdate-selector {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: var(--space-xs);
+}
+
+.birthdate-selector select {
+    padding: var(--space-sm);
+    background: var(--bg-tertiary);
+    border: 2px solid transparent;
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.birthdate-selector select:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    background: var(--bg-primary);
+}
+
+/* Buttons */
+.btn {
+    padding: var(--space-sm) var(--space-md);
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-primary:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background: var(--bg-secondary);
+}
+
+.btn-large {
+    width: 100%;
+    padding: var(--space-md);
+    font-size: 1.1rem;
+}
+
+/* Form Switch */
+.form-switch {
+    text-align: center;
+    margin-top: var(--space-md);
+    color: var(--text-secondary);
+}
+
+.form-switch a {
+    color: var(--accent-secondary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.form-switch a:hover {
+    text-decoration: underline;
+}
+
+/* Messages */
+.error-message,
+.success-message {
+    padding: var(--space-sm);
+    border-radius: var(--radius-sm);
+    margin-top: var(--space-md);
+    text-align: center;
+    font-weight: 600;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.error-message {
+    background: rgba(214, 48, 49, 0.2);
+    color: var(--danger);
+    border: 1px solid var(--danger);
+}
+
+.success-message {
+    background: rgba(0, 184, 148, 0.2);
+    color: var(--success);
+    border: 1px solid var(--success);
+}
+
+/* ============================================
+   APP SCREEN
+   ============================================ */
+
+#app-screen {
+    justify-content: center;
+    align-items: center;
+    padding: var(--space-md);
+}
+
+.app-container {
+    text-align: center;
+    max-width: 500px;
+}
+
+.app-container h1 {
+    font-size: 2rem;
+    margin-bottom: var(--space-md);
+}
+
+.app-container p {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-lg);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (min-width: 768px) {
+    .safety-header h1 {
+        font-size: 2rem;
+    }
+    
+    .app-logo h1 {
+        font-size: 3rem;
+    }
+    
+    #safety-screen {
+        padding: var(--space-xl);
+    }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+.text-center { text-align: center; }
+.text-muted { color: var(--text-muted); }
+.mb-0 { margin-bottom: 0; }
+.mt-sm { margin-top: var(--space-sm); }
+.mt-md { margin-top: var(--space-md); }
+.mt-lg { margin-top: var(--space-lg); }
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+:focus-visible {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+}
+
+/* Screen Reader Only */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+    
+    .btn,
+    button {
+        display: none;
+    }
+}
